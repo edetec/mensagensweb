@@ -13,8 +13,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-import org.hibernate.internal.jaxb.mapping.hbm.JaxbPrimitiveArrayElement;
-
 @WebFilter(servletNames = "Faces Servlet")
 public class JPAFilter implements Filter {
 	EntityManagerFactory entityManagerFactory;
@@ -31,6 +29,9 @@ public class JPAFilter implements Filter {
 			throws IOException, ServletException {
 		EntityManager entityManager = entityManagerFactory
 				.createEntityManager();
+		
+		FacesContextUtil.setEntityManager(servletRequest, entityManager);
+		
 		entityManager.getTransaction().begin();
 
 		filterChain.doFilter(servletRequest, servletResponse);

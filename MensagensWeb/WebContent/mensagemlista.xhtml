@@ -11,16 +11,24 @@
 	    Mensagem<small>Listar</small>
 	</ui:define>
 	<ui:define name="conteudo">
-		<h:dataTable value="" var="">
+		<h:dataTable value="#{mensagemMb.mensagens}" var="mensagem"
+			styleClass="table">
 			<h:column>
 				<f:facet name="header">Código</f:facet>
-				<h:outputText value="" />
+				<h:outputText value="#{mensagem.id}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Código</f:facet>
-				<h:outputText value="" />
+				<f:facet name="header">Título</f:facet>
+				<h:outputText value="#{mensagem.titulo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Autor</f:facet>
+				<h:outputText value="#{mensagem.autor}" />
 			</h:column>
 		</h:dataTable>
+		<h:panelGrid rendered="#{empty mensagemMb.mensagens}">
+		Sem registros
+		</h:panelGrid>
 		<ui:include src="WEB-INF/templates/logo.xhtml"></ui:include>
 	</ui:define>
 </ui:composition>
