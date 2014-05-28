@@ -12,47 +12,16 @@
 	<title><ui:insert name="titulo">Mensagens Web</ui:insert></title>
 </h:head>
 <h:body>
-	<nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Brand</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><h:link value="Home" outcome="index" /></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Mensagens<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><h:link value="Listar" outcome="mensagemlista" /></li>
-					</ul></li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
-
+	<ui:insert name="menu">
+		<ui:include src="menu.xhtml" />
+	</ui:insert>
 	<div class="container">
-
 		<div class="page-header">
 			<h1>
 				<ui:insert name="cabecalho">Mensagens</ui:insert>
 			</h1>
 		</div>
-
 		<ui:insert name="conteudo">Bem vindo!</ui:insert>
-
 	</div>
-
 </h:body>
-
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="WEB-INF/templates/padrao.xhtml">
+	<ui:define name="conteudo">
+		<h:form role="form">
+			<h:inputHidden id="id" value="#{mensagemMb.mensagem.id}"
+				rendered="#{!empty mensagemMb.mensagem.id}" />
+			<div class="form-group">
+				<h:outputLabel value="Autor" />
+				<h:inputText styleClass="form-control"
+					value="#{mensagemMb.mensagem.autor}" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Título" />
+				<h:inputText styleClass="form-control"
+					value="#{mensagemMb.mensagem.titulo}" />
+			</div>
+			<h:commandButton styleClass="btn btn-success" value="Salvar" action="#{mensagemMb.salvar}" />
+			<button type="reset" class="btn btn-default">Restaurar</button>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -7,25 +7,34 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="WEB-INF/templates/padrao.xhtml">
+	<ui:define name="titulo">Lista de Mensagens</ui:define>
 	<ui:define name="cabecalho">
 	    Mensagem<small>Listar</small>
 	</ui:define>
 	<ui:define name="conteudo">
-		<h:dataTable value="#{mensagemMb.mensagens}" var="mensagem"
-			styleClass="table">
-			<h:column>
-				<f:facet name="header">Código</f:facet>
-				<h:outputText value="#{mensagem.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Título</f:facet>
-				<h:outputText value="#{mensagem.titulo}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Autor</f:facet>
-				<h:outputText value="#{mensagem.autor}" />
-			</h:column>
-		</h:dataTable>
+		<h:form>
+			<h:dataTable value="#{mensagemMb.mensagens}" var="mensagem"
+				styleClass="table">
+				<h:column>
+					<f:facet name="header">Código</f:facet>
+					<h:outputText value="#{mensagem.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Título</f:facet>
+					<h:outputText value="#{mensagem.titulo}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Autor</f:facet>
+					<h:outputText value="#{mensagem.autor}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#</f:facet>
+					<h:commandLink action="#{mensagemMb.editar(mensagem.id)}">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
 		<h:panelGrid rendered="#{empty mensagemMb.mensagens}">
 		Sem registros
 		</h:panelGrid>

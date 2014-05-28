@@ -1,14 +1,13 @@
 package br.senai.sc.ti20122n.pw.mensagensweb.mb;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.FaceletContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.servlet.http.HttpServletRequest;
 
 import br.senai.sc.ti20122n.pw.mensagensweb.model.entity.Mensagem;
 import br.senai.sc.ti20122n.pw.mensagensweb.util.FacesContextUtil;
@@ -17,10 +16,12 @@ import br.senai.sc.ti20122n.pw.mensagensweb.util.FacesContextUtil;
 public class MensagemMb {
 
 	private List<Mensagem> mensagens;
+	private Mensagem mensagem;
 	private EntityManager entityManager;
 
 	@PostConstruct
 	private void init() {
+		mensagem = new Mensagem();
 		entityManager = FacesContextUtil.getEntityManager();
 	}
 
@@ -35,6 +36,25 @@ public class MensagemMb {
 
 	public void setMensagens(List<Mensagem> mensagens) {
 		this.mensagens = mensagens;
+	}
+
+	public Mensagem getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(Mensagem mensagem) {
+		this.mensagem = mensagem;
+	}
+	
+	public String salvar(){
+		entityManager.persist(mensagem);
+		
+		return "mensagemlista";
+	}
+	
+	public String editar(Long id){
+		mensagem = entityManager.find(Mensagem.class, id);
+		return "mensagemform";
 	}
 
 }
