@@ -29,8 +29,11 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">#</f:facet>
-					<h:commandLink action="#{mensagemMb.editar(mensagem.id)}">
+					<h:commandLink action="#{mensagemMb.editar(mensagem.id)}" styleClass="btn">
 						<span class="glyphicon glyphicon-pencil"></span>
+					</h:commandLink>
+					<h:commandLink action="#{mensagemMb.excluir(mensagem.id)}" styleClass="btn">
+						<span class="glyphicon glyphicon-trash"></span>
 					</h:commandLink>
 				</h:column>
 			</h:dataTable>

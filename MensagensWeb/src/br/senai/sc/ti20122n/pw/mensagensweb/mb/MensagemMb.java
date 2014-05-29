@@ -47,7 +47,7 @@ public class MensagemMb {
 	}
 	
 	public String salvar(){
-		entityManager.persist(mensagem);
+		entityManager.merge(mensagem);
 		
 		return "mensagemlista";
 	}
@@ -55,6 +55,12 @@ public class MensagemMb {
 	public String editar(Long id){
 		mensagem = entityManager.find(Mensagem.class, id);
 		return "mensagemform";
+	}
+	
+	public String excluir(Long id){
+		Mensagem msg = entityManager.find(Mensagem.class, id);
+		entityManager.remove(msg);
+		return "mensagemlista";
 	}
 
 }
