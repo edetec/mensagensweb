@@ -1,5 +1,6 @@
 package br.senai.sc.ti20122n.pw.mensagensweb.mb;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.senai.sc.ti20122n.pw.mensagensweb.model.entity.Autor;
 import br.senai.sc.ti20122n.pw.mensagensweb.model.entity.Mensagem;
 import br.senai.sc.ti20122n.pw.mensagensweb.util.FacesContextUtil;
 
@@ -60,6 +62,7 @@ public class MensagemMb {
 	public String excluir(Long id){
 		Mensagem msg = entityManager.find(Mensagem.class, id);
 		entityManager.remove(msg);
+		mensagens = null;
 		return "mensagemlista";
 	}
 

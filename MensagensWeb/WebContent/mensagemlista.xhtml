@@ -25,7 +25,13 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Autor</f:facet>
-					<h:outputText value="#{mensagem.autor}" />
+					<h:outputText value="#{mensagem.autor.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Data de publicação</f:facet>
+					<h:outputText value="#{mensagem.dataPublicacao}">
+						<f:convertDateTime locale="pt_BR" />
+					</h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">#</f:facet>
