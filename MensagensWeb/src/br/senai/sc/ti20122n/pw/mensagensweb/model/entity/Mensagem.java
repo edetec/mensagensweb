@@ -16,6 +16,7 @@ public class Mensagem {
 	@ManyToOne
 	private Autor autor;
 	private String titulo;
+	private String imagem;
 	private Date dataPublicacao;
 	
 	public Long getId() {
@@ -41,5 +42,11 @@ public class Mensagem {
 	}
 	public void setAutor(Autor autor) {
 		this.autor = autor;
+	}
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 }

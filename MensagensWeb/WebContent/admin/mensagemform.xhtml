@@ -8,8 +8,8 @@
 
 <ui:composition template="../WEB-INF/templates/padrao.xhtml">
 	<ui:define name="conteudo">
-	<h:messages></h:messages>
-		<h:form role="form">
+		<h:messages></h:messages>
+		<h:form role="form" enctype="multipart/form-data">
 			<h:panelGrid rendered="#{!empty mensagemMb.mensagem.id}">
 				<div class="form-group">
 					<h:outputLabel value="Código" />
@@ -23,8 +23,8 @@
 				<h:selectOneMenu styleClass="form-control"
 					value="#{mensagemMb.mensagem.autor}">
 					<f:selectItem itemLabel="--" />
-					<f:selectItems value="#{autorMb.autores}" var="autor" 
-					itemLabel="#{autor.nome}" itemValue="#{autor}" />
+					<f:selectItems value="#{autorMb.autores}" var="autor"
+						itemLabel="#{autor.nome}" itemValue="#{autor}" />
 				</h:selectOneMenu>
 			</div>
 			<div class="form-group">
@@ -38,6 +38,15 @@
 					value="#{mensagemMb.mensagem.dataPublicacao}">
 					<f:convertDateTime locale="pt_BR" />
 				</h:inputText>
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Imagem" />
+				<h:inputFile value="#{mensagemMb.imagem}">
+					<f:validator validatorId="br.senai.sc.ti20122n.pw.mensagensweb.validator.ImagemValidator" />
+				</h:inputFile>
+				<h:inputHidden value="#{mensagemMb.mensagem.imagem}" />
+				<h:graphicImage styleClass="img-responsive" rendered="#{!empty mensagemMb.mensagem.imagem}"
+					value="#{mensagemMb.getCaminhoRelativo(mensagemMb.mensagem.imagem)}" />
 			</div>
 			<h:commandButton styleClass="btn btn-success" value="Salvar"
 				action="#{mensagemMb.salvar}" />
