@@ -1,23 +1,13 @@
 package br.senai.sc.ti20122n.pw.mensagensweb.mb;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.rmi.server.UID;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
-
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 import br.senai.sc.ti20122n.pw.mensagensweb.model.entity.Mensagem;
 import br.senai.sc.ti20122n.pw.mensagensweb.util.FacesContextUtil;
@@ -44,7 +34,7 @@ public class MensagemMb {
 
 	public List<Mensagem> getMensagens() {
 		if (mensagens == null) {
-			Query query = entityManager.createQuery("SELECT m FROM Mensagem m",
+			Query query = entityManager.createQuery("SELECT m FROM Mensagem m ",
 					Mensagem.class);
 			mensagens = query.getResultList();
 		}
@@ -65,8 +55,8 @@ public class MensagemMb {
 
 	public String salvar() throws IOException {
 		imagemAntiga = mensagem.getImagem();
-		mensagem = entityManager.merge(mensagem);
 		mensagem.setImagem(ImagemUtil.copiar(imagem,imagemAntiga));
+		entityManager.merge(mensagem);
 		return "mensagemlista";
 	}
 

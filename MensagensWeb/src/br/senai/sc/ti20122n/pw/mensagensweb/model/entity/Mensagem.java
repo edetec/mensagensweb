@@ -5,8 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Mensagem {
@@ -16,6 +16,8 @@ public class Mensagem {
 	@ManyToOne
 	private Autor autor;
 	private String titulo;
+	@Lob
+	private String conteudo;
 	private String imagem;
 	private Date dataPublicacao;
 	
@@ -48,5 +50,11 @@ public class Mensagem {
 	}
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+	public String getConteudo() {
+		return conteudo;
+	}
+	public void setConteudo(String conteudo) {
+		this.conteudo = conteudo;
 	}
 }

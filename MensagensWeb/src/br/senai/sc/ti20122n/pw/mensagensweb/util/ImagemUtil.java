@@ -32,7 +32,7 @@ public class ImagemUtil {
 		if (nomeImagem == null)
 			return;
 
-		File file = new File(ImagemUtil.getCaminhoAbsoluto(nomeImagem));
+		File file = new File(getCaminhoAbsoluto(nomeImagem));
 		if (file.exists())
 			file.delete();
 	}
@@ -53,28 +53,6 @@ public class ImagemUtil {
 		String nomeImagem = gerarNomeImagem(imagem);
 
 		imagem.write(getCaminhoAbsoluto(nomeImagem));
-		deletar(imagemAntiga);
-		return nomeImagem;
-	}
-
-	public static String copiarParaTamanho(Part imagem, String imagemAntiga,
-			int largura, int altura) throws IOException {
-		if (imagem == null)
-			return imagemAntiga;
-
-		String nomeImagem = gerarNomeImagem(imagem);
-
-		BufferedImage imagemOriginal = ImageIO.read(imagem.getInputStream());
-		BufferedImage imagemRedimensionada = new BufferedImage(largura, altura,
-				BufferedImage.TYPE_INT_RGB);
-
-		imagemRedimensionada.getGraphics().drawImage(imagemOriginal, 0, 0,
-				largura, altura, null);
-
-		File destino = new File(getCaminhoAbsoluto(nomeImagem));
-		
-		ImageIO.write(imagemRedimensionada, getExtensao(imagem), destino);
-
 		deletar(imagemAntiga);
 		return nomeImagem;
 	}

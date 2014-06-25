@@ -11,11 +11,23 @@
 
 	<ui:define name="conteudo">
 		<ui:include src="WEB-INF/templates/logo.xhtml"></ui:include>
-		<div class="panel panel-default">
-			<div class="panel-heading">Mensagens de Amor</div>
-			<div class="panel-body">Para nós, todo o amor do mundo. Veja
-				nossas belas mensagens apaixonantes.</div>
-		</div>
+		<ui:repeat var="msg" value="#{mensagemMb.mensagens}">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h:outputText value="#{msg.titulo}" />
+				</div>
+				<div class="panel-body">
+					<small><h:outputText value="#{msg.dataPublicacao}">
+							<f:convertDateTime locale="pt_BR" />
+						</h:outputText></small>
+					<b><h:outputText value="#{msg.autor.nome}" /> </b>-
+					<h:outputText value="#{msg.conteudo}" />
+					<h:graphicImage styleClass="img-responsive"
+						rendered="#{!empty msg.imagem}"
+						value="#{mensagemMb.getCaminhoRelativo(msg.imagem)}" />
+				</div>
+			</div>
+		</ui:repeat>
 	</ui:define>
 </ui:composition>
 </html>
